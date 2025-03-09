@@ -1,10 +1,39 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useForm } from "react-hook-form";
+import axios from 'axios';
 
 function Login() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    // const onSubmit = data => console.log(data);
+    const onSubmit = async (data) => {
+        const userInfo={
+            email: data.email,
+            password: data.password
+        }
+        // console.log(data);
+        await axios.post('http://localhost:8000/user/login',userInfo)
+        .then((res)=>{
+            console.log(res.data);
+            if(res.data){
+                alert('Signup Succesfully')
+                document.getElementById("my_modal_3").close()
+                setTimeout(()=>{
+                    window.location.reload()
+                },2000)
+                
+            } 
+            localStorage.setItem("Users",JSON.stringify(res.data.user))
+        }).catch((err) => {
+            if(err.res){
+                console.log(err);
+                alert('Error: '+err)
+                // alert("Error : "+err.res.data.message)
+                setTimeout(()=>{})
+            }           
+        })
+        
+    }
 
     return (
         <div>

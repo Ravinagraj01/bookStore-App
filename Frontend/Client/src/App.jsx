@@ -1,20 +1,27 @@
 import { useState } from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import Home from './Home/Home'
 import './App.css'
 import Courses from './courses/courses'
 import Signup from './components/Signup'
+import { useAuth } from './context/AuthProvider'
+import Contact from './components/Contact'
+
+
+// import { Toaster } from 'react-hot-toast';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [authUser, setAuthUser] = useAuth()
 
   return (
     <Router>  {/* ✅ Wrap everything inside BrowserRouter */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/course" element={<Courses />} />
+        <Route path="/course" element={authUser?<Courses />:<Navigate to="/signup"></Navigate>} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
+      {/* <Toaster/> */}
     </Router>
   )
 }

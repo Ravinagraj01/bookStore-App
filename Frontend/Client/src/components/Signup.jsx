@@ -1,11 +1,41 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import Login from './Login'
+import axios from "axios"
+
 
 function Signup() {
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from  = location.stata?.from?.pathname || "/"
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    // const onSubmit = data => console.log(data);
+    const onSubmit = async (data) => {
+        const userInfo={
+            name: data.name,
+            email: data.email,
+            password: data.password
+        }
+        // console.log(data);
+        await axios.post('http://localhost:8000/user/signup',userInfo)
+        .then((res)=>{
+            console.log(res.data);
+            if(res.data){
+                alert('Signup Succesfully');
+                navigate(from, {replace: true});
+                // <Navigate to="/"/>
+            } 
+            localStorage.setItem("Users",JSON.stringify(res.data.user))
+        }).catch((err) => {
+            if(err.res){
+                console.log(err);
+                alert('Error: '+err)
+                // alert("Error : "+err.res.data.message)
+            }           
+        })
+        
+    }
 
     return (
         <div>
@@ -70,7 +100,9 @@ function Signup() {
                     <Login />
                 </div>
             </div>
+            
         </div>
+        
     )
 }
 
