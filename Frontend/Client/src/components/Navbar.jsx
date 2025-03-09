@@ -92,7 +92,7 @@ function Navbar() {
                             <li><Link to="/about">About</Link></li>
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-4xl font-medium ">Book<span className='store-index'>Store</span></a>
+                    <a className="btn btn-ghost text-4xl font-medium ">book<span className='store-index'>Store</span></a>
                 </div>
 
                 <div className="navbar-center hidden lg:flex">

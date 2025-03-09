@@ -23,9 +23,9 @@ function Course() {
     },[])
   return (
     <div className='max-w-screen-2xl container mx-auto md:px-20 px-4'>
-        <div className='mt-28 items-center justify-center text-center'>
+        <div className='pt-[100px] items-center justify-center text-center'>
             <h1 className='text-2xl font-semibold md:text-4xl'>We're delighted to have you <span className='text-pink-500'>Here! :)</span></h1>
-            <p className='mt-12'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos accusamus aperiam, quo voluptate, illum ipsum veniam aliquam sapiente excepturi impedit a animi assumenda ex dignissimos voluptatum consectetur molestiae repudiandae! Reprehenderit, quos earum ab dicta veritatis doloremque quo praesentium molestias. Corrupti explicabo accusantium, laborum illo amet quia ex? Est, autem alias.?</p>
+            <p className='mt-12'>Enhance your knowledge with our carefully crafted courses, designed for book lovers and lifelong learners alike. Whether you want to explore literature, improve your writing skills, or dive into specialized topics, our courses offer something for everyone. Learn at your own pace and unlock new opportunities through the power of books!</p>
             <Link to='/'>
                 <button className='bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-pink-700 duration-300 mt-6'>Back</button>
             </Link>
